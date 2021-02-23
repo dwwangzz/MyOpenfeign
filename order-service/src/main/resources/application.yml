@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: order-service
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+#    loadbalancer:
+#      ribbon:
+#        enabled: false
+    nacos:
+      discovery:
+        server-addr: 192.168.230.12:8848,192.168.230.121:8848,192.168.230.122:8848
+      config:
+        server-addr: 192.168.230.12:8848,192.168.230.121:8848,192.168.230.122:8848
+# 使用spring loadbalancer，弃用ribbon
+#ribbon:
+#  nacos:
+#    enabled: false
+
+# Nacos Discovery 内部提供了一个 Endpoint, url: http://ip:port/actuator/nacos-discovery
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
